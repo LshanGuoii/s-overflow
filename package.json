@@ -1,5 +1,5 @@
 {
-  "name": "re-overflow",
+  "name": "s-overflow",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,9 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "element-ui": "^2.15.14",
+    "resize-observer-polyfill": "^1.5.1",
+    "throttle-debounce": "^5.0.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
