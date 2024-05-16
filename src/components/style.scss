@@ -1,0 +1,92 @@
+
+
+.s-overflow {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  &:not(.is-expand) {
+    overflow-x: hidden;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+  }
+  &:not(.is-expand) [v-hidden] {
+    display: none!important;
+  }
+
+  .s-overflow__counter {
+    cursor: pointer;
+  }
+}
+
+.s-overflow.show-min {
+  & > div:not(.el-select__item) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.el-tag {
+  display: inline-block;
+  height: 32px;
+  padding: 4px;
+  line-height: 30px;
+  font-size: 12px;
+  color: #1f2134;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 8px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  background-color: #eee;
+  // 当处于 tags 模式时，且为多选时，可以清空
+  &.is-clearable.is-selected {
+    padding-right: 60px;
+  }
+  // 当有前缀，且不是文字模式，则顶部对其
+  &.is-selected.is-show-prefix:not(.show-text-mode) {
+    &.is-no-collapse, &.is-expanded {
+      align-items: flex-start;
+    }
+  }
+  &.is-selected:not(.show-text-mode) {
+    // 当为Tag的时候需要左偏移，不然那个清除icon会被遮挡
+    .s-overflow, .el-select__tags--container {
+      padding-left: 4px;
+      margin-left: -4px;
+    }
+    // 当为最小显示的时候，需要设置item的最大宽度减去count宽度
+    .s-overflow.show-min {
+      .el-select__item {
+        max-width: calc(100% - 36px - 8px);
+      }
+    }
+    // 当展开的时候需要减去前缀宽度
+    .s-overflow.is-expand, .el-select__tags--container {
+      max-width: calc(100% - var(--prefixWidth));
+    }
+  }
+
+  .s-overflow, .el-select__tags--container {
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+
+  &.el-select__is-text {
+    .s-overflow, .el-select__tags--container {
+      padding-top: 1px;
+      padding-bottom: 1px;
+    }
+  }
+
+
+  &:hover {
+    .el-select__icon {
+      visibility: visible;
+    }
+
+    .el-select__close {
+      visibility: visible;
+    }
+  }
+}
